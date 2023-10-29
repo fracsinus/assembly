@@ -16,4 +16,4 @@ BASE_NAME=${FILENAME%.*}
 mkdir -p "$DIRNAME/out"
 
 nasm -f elf64 "$1" -o "/tmp/$BASE_NAME.o"
-ld "$OUTPUT_DIR/$BASE_NAME.o" -o "$BASE_NAME.out"
+ld "/tmp/$BASE_NAME.o" -o "$OUTPUT_DIR/$BASE_NAME.out"
