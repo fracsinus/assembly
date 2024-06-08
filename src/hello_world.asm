@@ -1,18 +1,18 @@
-global _start
+.global _start
 
-section .data
+.section .data
 msg:
-    db "Hello, world!", 10      ; 10 for a newline character
+    .ascii "Hello, world!\n"
 
-section .text
+.section .text
 
 _start:
-    mov         rax, 1          ; write() syscall
-    mov         rdi, 1          ; file descriptor
-    mov         rsi, msg        ; pointer
-    mov         rdx, 14         ; size
+    mov     $1, %rax           # write() syscall
+    mov     $1, %rdi           # file descriptor
+    lea     msg(%rip), %rsi    # pointer
+    mov     $14, %rdx          # size
     syscall
 
-    mov         rax, 60         ; exit() syscall
-    mov         rdi, 0          ; exit code
+    mov     $60, %rax          # exit() syscall
+    mov     $0, %rdi           # exit code
     syscall
